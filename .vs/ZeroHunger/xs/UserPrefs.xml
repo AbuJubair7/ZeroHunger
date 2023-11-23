@@ -1,10 +1,30 @@
 ﻿<Properties StartupConfiguration="{A7092DD7-AEAB-43B0-A53E-4B53C6888F4C}|https">
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="ZeroHunger/Controllers/HomeController.cs">
+    <Files>
+      <File FileName="ZeroHunger/Program.cs" Line="25" Column="37" />
+      <File FileName="ZeroHunger/Controllers/AccountController.cs" Line="118" Column="46" />
+      <File FileName="ZeroHunger/Controllers/HomeController.cs" Line="27" Column="1" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="ZeroHunger" expanded="True" selected="True" />
+          <Node name="ZeroHunger">
+            <Node name="ZeroHunger">
+              <Node name="Controllers" expanded="True">
+                <Node name="HomeController.cs" selected="True" />
+              </Node>
+              <Node name="Data" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Views" expanded="True">
+                <Node name="Account" expanded="True" />
+                <Node name="Shared" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
         </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>

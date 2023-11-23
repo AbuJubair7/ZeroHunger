@@ -1,4 +1,6 @@
-﻿@{
+﻿@model ZeroHunger.Models.DTOs.SignInDTO
+
+@{
     ViewData["Title"] = "Sign In";
     Layout = "_Layout"; // Assuming you are using a shared layout named _Layout.cshtml
 }
@@ -10,15 +12,21 @@
                 <div class="card-body">
                     <h2 class="card-title text-center">Sign In</h2>
                     <!-- Add your sign-in form here -->
-                    <form>
+                    <form asp-controller="Account" asp-action="SignIn" method="post">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+
                         <div class="mb-3">
-                            <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="username" name="username" required>
+                            <label for="email" class="form-label">Email</label>
+                            <input asp-for="Email" type="email" class="form-control" id="email" required>
+                            <span asp-validation-for="Email" class="text-danger"></span>
                         </div>
+
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
+                            <input asp-for="Password" type="password" class="form-control" id="password" required>
+                            <span asp-validation-for="Password" class="text-danger"></span>
                         </div>
+
                         <button type="submit" class="btn btn-primary w-100">Sign In</button>
                     </form>
                     <div class="text-center mt-3">

@@ -84,3 +84,10 @@
 /Users/jubair/Projects/ZeroHunger/obj/Debug/net7.0/ZeroHunger.pdb
 /Users/jubair/Projects/ZeroHunger/obj/Debug/net7.0/ZeroHunger.genruntimeconfig.cache
 /Users/jubair/Projects/ZeroHunger/obj/Debug/net7.0/ref/ZeroHunger.dll
+/Users/jubair/Projects/ZeroHunger/ZeroHunger/bin/Debug/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/Users/jubair/Projects/ZeroHunger/ZeroHunger/bin/Debug/net7.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/Users/jubair/Projects/ZeroHunger/ZeroHunger/bin/Debug/net7.0/Microsoft.IdentityModel.Logging.dll
+/Users/jubair/Projects/ZeroHunger/ZeroHunger/bin/Debug/net7.0/Microsoft.IdentityModel.Protocols.dll
+/Users/jubair/Projects/ZeroHunger/ZeroHunger/bin/Debug/net7.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/Users/jubair/Projects/ZeroHunger/ZeroHunger/bin/Debug/net7.0/Microsoft.IdentityModel.Tokens.dll
+/Users/jubair/Projects/ZeroHunger/ZeroHunger/bin/Debug/net7.0/System.IdentityModel.Tokens.Jwt.dll

@@ -5,25 +5,67 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ZeroHunger.Models;
 using ZeroHunger.Models.DTOs;
-using BCrypt.Net; // Adjust the namespace
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using ZeroHunger.Data;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using Microsoft.Extensions.Configuration;
 
 namespace ZeroHunger.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly AppDbContext _dbContext;
+        private readonly IConfiguration _configuration;
 
-        // GET: /<controller>/
+        public AccountController(AppDbContext dbContext, IConfiguration configuration)
+        {
+            _dbContext = dbContext;
+            _configuration = configuration;
+        }
         public IActionResult Login(string type)
         {
             ViewData["UserType"] = type;
             return View();
         }
 
+        [HttpGet]
         public IActionResult SignIn()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult SignIn(SignInDTO signInDto)
+        {
+            if (ModelState.IsValid)
+            {
+                // Retrieve the user from the database based on the provided email
+                var user = _dbContext.Users.FirstOrDefault(u => u.Email == signInDto.Email);
+
+                if (user != null && BCrypt.Net.BCrypt.Verify(signInDto.Password, user.Password))
+                {
+                    var token = GenerateJwtToken(user);
+
+                    // Set the token as a cookie
+                    Response.Cookies.Append("JWTToken", token, new CookieOptions
+                    {
+                        HttpOnly = true,
+                        Secure = true, // Set to true in production if using HTTPS
+                        SameSite = SameSiteMode.Strict
+                    });
+                    // Set a session variable to indicate successful sign-in
+                    HttpContext.Session.SetString("IsAuthenticated", "true");
+
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Invalid email or password");
+                }
+            }
+            return View(signInDto);
         }
 
         [HttpGet]
@@ -37,27 +79,22 @@ namespace ZeroHunger.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Perform additional validation if needed
-                // Example: Check if the email is unique before creating a new user
-
                 // Map DTO to User entity
                 var newUser = new User
                 {
                     Name = signUpDto.Name,
                     Email = signUpDto.Email,
                     Phone = signUpDto.Phone,
-                    Password = HashPassword(signUpDto.Password), // Manually hash the password
+                    Password = HashPassword(signUpDto.Password),
                     Address = signUpDto.Address
                 };
 
                 // Save the new user to the database or perform other actions
-                // Example: userRepository.Create(newUser);
+                _dbContext.Users.Add(newUser);
+                _dbContext.SaveChanges();
 
-                // Redirect to a signIn page or another action
                 return RedirectToAction("SignIn");
             }
-
-            // If ModelState is not valid, return to the sign-up page with validation errors
             return View(signUpDto);
         }
 
@@ -65,6 +102,28 @@ namespace ZeroHunger.Controllers
         {
             // Hash the password using BCrypt
             return BCrypt.Net.BCrypt.HashPassword(password);
+        }
+
+        // Generate token
+        private string GenerateJwtToken(User user)
+        {
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, user.Email),
+            };
+
+            var token = new JwtSecurityToken(
+                _configuration["Jwt:Issuer"],
+                _configuration["Jwt:Audience"],
+                claims,
+                expires: DateTime.Now.AddMinutes(Convert.ToDouble(_configuration["Jwt:ExpiresInMinutes"])),
+                signingCredentials: credentials
+            );
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }
