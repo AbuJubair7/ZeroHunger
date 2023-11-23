@@ -1,0 +1,22 @@
+﻿@page
+@{
+}
+
+<div class="text-center mt-5">
+    <h1 class="display-4">Welcome to ZeroHunger</h1>
+    <p class="lead">Helping to reduce food waste and feed those in need.</p>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-6 offset-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title text-center">Login</h3>
+                <ul class="list-group">
+                    <li class="list-group-item"><a class="btn btn-primary w-100" asp-controller="Account" asp-action="Login" asp-route-type="Admin">Admin Login</a></li>
+                    <li class="list-group-item"><a class="btn btn-success w-100" asp-controller="Account" asp-action="SignIn" asp-route-type="User">User Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
