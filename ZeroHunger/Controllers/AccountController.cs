@@ -52,6 +52,8 @@ namespace ZeroHunger.Controllers
                     Console.WriteLine($"Bearer {token}");
                     // Set the token as a cookie
                     Response.Cookies.Append("JWTToken", token);
+                    // set then token as UserId
+                    Response.Cookies.Append("UserId", user.Id.ToString());
                     // Set a session variable to indicate successful sign-in
                     HttpContext.Session.SetString("IsAuthenticated", "true");
 
@@ -94,7 +96,9 @@ namespace ZeroHunger.Controllers
                 Console.WriteLine($"Bearer {token}");
                 // Set the token as a cookie
                 Response.Cookies.Append("JWTToken", token);
-                // Set a session variable to indicate successful sign-in
+                // set then token as UserId
+                Response.Cookies.Append("UserId", newUser.Id.ToString());
+                // Set a session variable to indicate successful sign-up
                 HttpContext.Session.SetString("IsAuthenticated", "true");
 
                 return RedirectToAction("Index", "Home");

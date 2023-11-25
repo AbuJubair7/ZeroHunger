@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ZeroHunger</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="~/css/restaurant.css" rel="stylesheet" asp-append-version="true" />
+</head>
+<body>
+    <main>
+        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark"
+             style="width: 280px">
+            <a href="/"
+               class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                <span class="fs-4">@ViewBag.name</span>
+            </a>
+            <hr />
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li>
+                    <a href="#" class="nav-link text-white active"> Dashboard </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link text-white"> All Requests </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link text-white"> Edit Request </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link text-white"> Add New Request </a>
+                </li>
+            </ul>
+            <hr />
+            <div class="text-white">
+                <button class="btn btn-outline-light">Sign Out</button>
+            </div>
+        </div>
+
+        <div class="b-example-divider"></div>
+        <div>
+            @RenderBody()
+        </div>
+    </main>
+
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

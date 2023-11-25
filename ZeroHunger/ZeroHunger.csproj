@@ -18,4 +18,10 @@
     <PackageReference Include="BCrypt.Net" Version="0.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.0" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="Views\Restaurant\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Restaurant\" />
+  </ItemGroup>
 </Project>

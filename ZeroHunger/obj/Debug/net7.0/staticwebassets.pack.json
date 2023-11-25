@@ -9,6 +9,34 @@
       "PackagePath": "staticwebassets/.DS_Store"
     },
     {
+      "Id": "/Users/jubair/Projects/ZeroHunger/ZeroHunger/wwwroot/Assets/.DS_Store",
+      "PackagePath": "staticwebassets/Assets/.DS_Store"
+    },
+    {
+      "Id": "/Users/jubair/Projects/ZeroHunger/ZeroHunger/wwwroot/Assets/employee.png",
+      "PackagePath": "staticwebassets/Assets/employee.png"
+    },
+    {
+      "Id": "/Users/jubair/Projects/ZeroHunger/ZeroHunger/wwwroot/Assets/employee2.png",
+      "PackagePath": "staticwebassets/Assets/employee2.png"
+    },
+    {
+      "Id": "/Users/jubair/Projects/ZeroHunger/ZeroHunger/wwwroot/Assets/employee3.png",
+      "PackagePath": "staticwebassets/Assets/employee3.png"
+    },
+    {
+      "Id": "/Users/jubair/Projects/ZeroHunger/ZeroHunger/wwwroot/Assets/employee4.png",
+      "PackagePath": "staticwebassets/Assets/employee4.png"
+    },
+    {
+      "Id": "/Users/jubair/Projects/ZeroHunger/ZeroHunger/wwwroot/Assets/restaurant.png",
+      "PackagePath": "staticwebassets/Assets/restaurant.png"
+    },
+    {
+      "Id": "/Users/jubair/Projects/ZeroHunger/ZeroHunger/wwwroot/css/restaurant.css",
+      "PackagePath": "staticwebassets/css/restaurant.css"
+    },
+    {
       "Id": "/Users/jubair/Projects/ZeroHunger/ZeroHunger/wwwroot/css/site.css",
       "PackagePath": "staticwebassets/css/site.css"
     },

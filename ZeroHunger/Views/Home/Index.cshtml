@@ -1,9 +1,31 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    var title = ViewData["Title"] as string ?? "Default Title";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<div class="container mt-5">
+    <h2 class="text-center mb-4">@title</h2>
 
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <img src="~/Assets/restaurant.png" class="card-img-top img-fluid" alt="Create Restaurant" style="height: 50%;" asp-append-version="true">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Create a Restaurant</h5>
+                    <p class="card-text text-center">Start your own restaurant and showcase your menu.</p>
+                    <a asp-action="CreateRestaurant" class="btn btn-primary btn-block">Get Started</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <img src="~/Assets/employee3.png" class="card-img-top img-fluid" alt="Join as Employee" style="height: 50%;" asp-append-version="true">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Join as an Employee</h5>
+                    <p class="card-text text-center">Explore opportunities and join a restaurant's team.</p>
+                    <a asp-action="JoinAsEmployee" class="btn btn-primary btn-block">Apply Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

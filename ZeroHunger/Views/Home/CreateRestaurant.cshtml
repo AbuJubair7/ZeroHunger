@@ -1,0 +1,21 @@
+﻿@model ZeroHunger.Models.DTOs.RestaurantDTO
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Create a Restaurant</h2>
+
+    <form asp-action="CreateRestaurant" method="post">
+        <div class="form-group">
+            <label for="RestaurantName">Restaurant Name</label>
+            <input asp-for="RestaurantName" class="form-control" />
+            <span asp-validation-for="RestaurantName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="Location">Location</label>
+            <input asp-for="Location" class="form-control" />
+            <span asp-validation-for="Location" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create Restaurant</button>
+    </form>
+</div>
