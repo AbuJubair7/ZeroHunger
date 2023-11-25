@@ -12,8 +12,8 @@ using ZeroHunger.Data;
 namespace ZeroHunger.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231124061036_SecondCreate")]
-    partial class SecondCreate
+    [Migration("20231125184038_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -65,8 +65,9 @@ namespace ZeroHunger.Migrations
                     b.Property<int>("FoodQuantity")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("PreserveDate")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<string>("PreserveDate")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<int>("RestaurantId")
                         .HasColumnType("integer");

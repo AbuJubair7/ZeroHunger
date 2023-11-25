@@ -24,7 +24,7 @@ public class HomeController : Controller
         if (restaurant != null)
         {
             Response.Cookies.Append("ResId", restaurant.Id.ToString());
-            return RedirectToAction("Index", "Restaurant");
+            return RedirectToAction("Dashboard", "Restaurant");
         }
         ViewData["Title"] = "Welcome to the Home Page!";
         return View();
@@ -54,7 +54,7 @@ public class HomeController : Controller
             Response.Cookies.Append("ResId", newRestaurant.Id.ToString());
 
             
-            return RedirectToAction("Index", "Restaurant");
+            return RedirectToAction("Dashboard", "Restaurant");
         }
         return View(restaurantDTO);
     }

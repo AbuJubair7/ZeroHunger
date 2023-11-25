@@ -8,7 +8,7 @@ namespace ZeroHunger.Models
         public string FoodName { get; set; }
         public int FoodQuantity { get; set; }
         public string Status { get; set; }
-        public DateTime PreserveDate { get; set; }
+        public string PreserveDate { get; set; }
 
         public virtual Restaurant Restaurant { get; set; }
     }

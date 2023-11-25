@@ -48,8 +48,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTGFuZGluZy9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/jubair/Projects/ZeroHunger/ZeroHunger/Views/Restaurant/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVzdGF1cmFudC9JbmRleC5jc2h0bWw=
+[/Users/jubair/Projects/ZeroHunger/ZeroHunger/Views/Restaurant/AddRequest.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVzdGF1cmFudC9BZGRSZXF1ZXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jubair/Projects/ZeroHunger/ZeroHunger/Views/Restaurant/AllRequest.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVzdGF1cmFudC9BbGxSZXF1ZXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jubair/Projects/ZeroHunger/ZeroHunger/Views/Restaurant/Dashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVzdGF1cmFudC9EYXNoYm9hcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jubair/Projects/ZeroHunger/ZeroHunger/Views/Restaurant/EditRequest.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVzdGF1cmFudC9FZGl0UmVxdWVzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/jubair/Projects/ZeroHunger/ZeroHunger/Views/Shared/Error.cshtml]

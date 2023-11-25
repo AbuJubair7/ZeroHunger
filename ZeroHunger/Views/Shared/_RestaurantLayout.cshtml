@@ -22,16 +22,17 @@
             <hr />
             <ul class="nav nav-pills flex-column mb-auto">
                 <li>
-                    <a href="#" class="nav-link text-white active"> Dashboard </a>
+                    <a asp-action="Dashboard" class="nav-link text-white @(ViewBag.selected == "dash" ? "active" : "")">Dashboard</a>
+
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white"> All Requests </a>
+                    <a asp-action="AllRequest" class="nav-link text-white  @(ViewBag.selected == "all" ? "active" : "")"> All Requests </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white"> Edit Request </a>
+                    <a asp-action="EditRequest" class="nav-link text-white  @(ViewBag.selected == "edit" ? "active" : "")"> Edit Request </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white"> Add New Request </a>
+                    <a asp-controller="Restaurant" asp-action="AddRequest" class="nav-link text-white @(ViewBag.selected == "add" ? "active" : "")"> Add New Request </a>
                 </li>
             </ul>
             <hr />
@@ -41,7 +42,7 @@
         </div>
 
         <div class="b-example-divider"></div>
-        <div>
+        <div class="col-md-8">
             @RenderBody()
         </div>
     </main>

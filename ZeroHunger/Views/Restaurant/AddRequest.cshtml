@@ -1,0 +1,41 @@
+﻿@model ZeroHunger.Models.DTOs.FoodRequestDTO
+
+@{
+    Layout = "_RestaurantLayout";
+    ViewData["Title"] = "Food Request Form";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">@ViewData["Title"]</h2>
+                    <form asp-action="AddRequest" method="post">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+
+                        <div class="mb-5">
+                            <label asp-for="FoodName" class="form-label"></label>
+                            <input asp-for="FoodName" class="form-control" />
+                            <span asp-validation-for="FoodName" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-5">
+                            <label asp-for="FoodQuantity" class="form-label"></label>
+                            <input asp-for="FoodQuantity" class="form-control" />
+                            <span asp-validation-for="FoodQuantity" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-5">
+                            <label asp-for="PreserveDate" class="form-label"></label>
+                            <input asp-for="PreserveDate" type="date" class="form-control" />
+                            <span asp-validation-for="PreserveDate" class="text-danger"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

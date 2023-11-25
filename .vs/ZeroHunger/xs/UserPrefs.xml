@@ -1,25 +1,18 @@
 ﻿<Properties StartupConfiguration="{A7092DD7-AEAB-43B0-A53E-4B53C6888F4C}|https">
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.ZeroHunger PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ZeroHunger/Views/Account/SignUp.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ZeroHunger/Models/DTOs/FoodRequestDTO.cs">
     <Files>
-      <File FileName="ZeroHunger/Controllers/AccountController.cs" Line="54" Column="64" />
-      <File FileName="ZeroHunger/Controllers/HomeController.cs" Line="17" Column="6" />
-      <File FileName="ZeroHunger/Program.cs" Line="10" Column="42" />
-      <File FileName="ZeroHunger/Views/Account/SignUp.cshtml" Line="54" Column="93" />
+      <File FileName="ZeroHunger/Controllers/RestaurantController.cs" Line="75" Column="41" />
+      <File FileName="ZeroHunger/Models/DTOs/FoodRequestDTO.cs" Line="9" Column="45" />
+      <File FileName="ZeroHunger/Models/FoodRequest.cs" Line="11" Column="49" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="ZeroHunger" expanded="True">
+          <Node name="ZeroHunger">
             <Node name="ZeroHunger">
-              <Node name="Controllers" expanded="True" />
-              <Node name="Data" expanded="True" />
-              <Node name="Filters" expanded="True" />
-              <Node name="Views" expanded="True">
-                <Node name="Account" expanded="True">
-                  <Node name="SignUp.cshtml" selected="True" />
+              <Node name="Models">
+                <Node name="DTOs" expanded="True">
+                  <Node name="FoodRequestDTO.cs" selected="True" />
                 </Node>
               </Node>
             </Node>
@@ -28,8 +21,11 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.ZeroHunger PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>

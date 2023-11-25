@@ -81,7 +81,7 @@ namespace ZeroHunger.Migrations
                     FoodName = table.Column<string>(type: "text", nullable: false),
                     FoodQuantity = table.Column<int>(type: "integer", nullable: false),
                     Status = table.Column<string>(type: "text", nullable: false),
-                    PreserveDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    PreserveDate = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {

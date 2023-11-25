@@ -1,0 +1,38 @@
+﻿@model List<ZeroHunger.Models.FoodRequest>
+
+@{
+    Layout = "_RestaurantLayout";
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container mt-4">
+    <h2>Food Requests</h2>
+    @if (Model.Any())
+    {
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Food Name</th>
+                    <th>Quantity</th>
+                    <th>Status</th>
+                    <th>Preserve Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var request in Model)
+                {
+                    <tr>
+                        <td>@request.FoodName</td>
+                        <td>@request.FoodQuantity</td>
+                        <td>@request.Status</td>
+                        <td>@request.PreserveDate</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p class="text-center">No data exists.</p>
+    }
+</div>

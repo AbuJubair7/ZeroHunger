@@ -62,8 +62,9 @@ namespace ZeroHunger.Migrations
                     b.Property<int>("FoodQuantity")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("PreserveDate")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<string>("PreserveDate")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<int>("RestaurantId")
                         .HasColumnType("integer");
