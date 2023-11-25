@@ -11,9 +11,11 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ZeroHunger.Controllers
 {
+    
     public class AccountController : Controller
     {
         private readonly AppDbContext _dbContext;
@@ -42,19 +44,14 @@ namespace ZeroHunger.Controllers
             if (ModelState.IsValid)
             {
                 // Retrieve the user from the database based on the provided email
-                var user = _dbContext.Users.FirstOrDefault(u => u.Email == signInDto.Email);
+                var user = _dbContext.Users.SingleOrDefault(u => u.Email == signInDto.Email);
 
                 if (user != null && BCrypt.Net.BCrypt.Verify(signInDto.Password, user.Password))
                 {
                     var token = GenerateJwtToken(user);
-
+                    Console.WriteLine($"Bearer {token}");
                     // Set the token as a cookie
-                    Response.Cookies.Append("JWTToken", token, new CookieOptions
-                    {
-                        HttpOnly = true,
-                        Secure = true, // Set to true in production if using HTTPS
-                        SameSite = SameSiteMode.Strict
-                    });
+                    Response.Cookies.Append("JWTToken", token);
                     // Set a session variable to indicate successful sign-in
                     HttpContext.Session.SetString("IsAuthenticated", "true");
 
@@ -93,7 +90,14 @@ namespace ZeroHunger.Controllers
                 _dbContext.Users.Add(newUser);
                 _dbContext.SaveChanges();
 
-                return RedirectToAction("SignIn");
+                var token = GenerateJwtToken(newUser);
+                Console.WriteLine($"Bearer {token}");
+                // Set the token as a cookie
+                Response.Cookies.Append("JWTToken", token);
+                // Set a session variable to indicate successful sign-in
+                HttpContext.Session.SetString("IsAuthenticated", "true");
+
+                return RedirectToAction("Index", "Home");
             }
             return View(signUpDto);
         }
@@ -106,7 +110,8 @@ namespace ZeroHunger.Controllers
 
         // Generate token
         private string GenerateJwtToken(User user)
-        {
+        { 
+            Console.WriteLine($"id: {user.Id}");
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
