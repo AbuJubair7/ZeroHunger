@@ -39,33 +39,50 @@ namespace ZeroHunger.Controllers
 
             List<FoodRequest> foodRequests = restaurant != null ? GetFoodRequestsByRestaurantId(restaurant.Id) : new List<FoodRequest>();
             ViewBag.name = restaurant != null ? restaurant.RestaurantName : name;
-
+            name = ViewBag.name;
             Response.Cookies.Append("ResName", name);
 
             return View(foodRequests);
         }
 
         [HttpGet]
-        public IActionResult AllRequest()
-        {
-            ViewBag.name = HttpContext.Request.Cookies["ResName"];
-            ViewBag.selected = "all";
-            return View();
-        }
-
-        [HttpGet]
         public IActionResult EditRequest()
         {
+            Console.WriteLine("Get method");
             ViewBag.name = HttpContext.Request.Cookies["ResName"];
             ViewBag.selected = "edit";
-            return View();
+
+            int resId = int.Parse(String.IsNullOrEmpty(HttpContext.Request.Cookies["ResId"]) ? "0" : HttpContext.Request.Cookies["ResId"]);
+            List<FoodRequest> foodRequests = GetFoodRequestsByRestaurantId(resId);
+
+            return View(foodRequests);
+        }
+
+        [HttpPost]
+        public IActionResult EditRequest(int id)
+        {
+            Console.WriteLine("Post method");
+            var requestToDelete = _dbContext.FoodRequests.Find(id);
+
+            if (requestToDelete == null)
+            {
+                return RedirectToAction("Dashboard");
+            }
+
+            _dbContext.FoodRequests.Remove(requestToDelete);
+            _dbContext.SaveChanges();
+
+            // Redirect to the Dashboard action to show the updated list
+            return RedirectToAction("EditRequest");
         }
 
         [HttpGet]
         public IActionResult AddRequest()
         {
+            
             ViewBag.name = HttpContext.Request.Cookies["ResName"];
             ViewBag.selected = "add";
+
             return View();
         }
 
@@ -86,6 +103,18 @@ namespace ZeroHunger.Controllers
             _dbContext.FoodRequests.Add(newRequest);
             _dbContext.SaveChanges();
             return RedirectToAction("Dashboard");
+        }
+
+        public IActionResult SignOut()
+        {
+            foreach (var cookie in Request.Cookies.Keys)
+            {
+                Response.Cookies.Delete(cookie);
+            }
+            // Clear session
+            HttpContext.Session.Clear();
+
+            return RedirectToAction("SignIn", "Account");
         }
     }
 }

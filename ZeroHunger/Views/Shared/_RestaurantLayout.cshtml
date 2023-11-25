@@ -25,9 +25,7 @@
                     <a asp-action="Dashboard" class="nav-link text-white @(ViewBag.selected == "dash" ? "active" : "")">Dashboard</a>
 
                 </li>
-                <li>
-                    <a asp-action="AllRequest" class="nav-link text-white  @(ViewBag.selected == "all" ? "active" : "")"> All Requests </a>
-                </li>
+               
                 <li>
                     <a asp-action="EditRequest" class="nav-link text-white  @(ViewBag.selected == "edit" ? "active" : "")"> Edit Request </a>
                 </li>
@@ -37,7 +35,7 @@
             </ul>
             <hr />
             <div class="text-white">
-                <button class="btn btn-outline-light">Sign Out</button>
+                <a asp-controller="Restaurant" asp-action="SignOut" class="btn btn-outline-light">Sign Out</a>
             </div>
         </div>
 
