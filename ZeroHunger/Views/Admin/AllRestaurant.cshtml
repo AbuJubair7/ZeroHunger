@@ -1,0 +1,25 @@
+﻿@model List<ZeroHunger.Models.Restaurant>
+@{
+    Layout = "_AdminLayout";
+}
+
+<div class="container mt-4">
+    <h2>Restaurant Information</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>RestaurantName</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var restaurant in Model)
+            {
+                <tr>
+                    <td>@restaurant.RestaurantName</td>
+                    <td>@restaurant.Location</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

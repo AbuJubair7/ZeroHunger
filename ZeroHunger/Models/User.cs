@@ -12,6 +12,8 @@ namespace ZeroHunger.Models
 
         public virtual Restaurant Restaurant { get; set; }
         public virtual Employee Employee { get; set; }
+        public virtual FoodAssign FoodAssign { get; set; }
+        public virtual ICollection<FoodAssign> FoodAssigns { get; set; }
     }
 }
 

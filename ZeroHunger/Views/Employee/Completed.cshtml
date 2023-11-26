@@ -1,0 +1,31 @@
+﻿@model List<ZeroHunger.Models.FoodRequest>
+
+@{
+    Layout = "_EmployeeLayout";
+}
+
+
+<div class="container mt-4">
+    <h2>Collected @Model.Count()</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Food Name</th>
+                <th>Food Quantity</th>
+                <th>Status</th>
+                <th>Preserve Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var foodRequest in Model)
+            {
+                <tr>
+                    <td>@foodRequest.FoodName</td>
+                    <td>@foodRequest.FoodQuantity</td>
+                    <td>@foodRequest.Status</td>
+                    <td>@foodRequest.PreserveDate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

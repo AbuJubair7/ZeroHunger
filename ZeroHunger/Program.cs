@@ -70,17 +70,23 @@ app.Use(async (context, next) =>
 {
     var path = context.Request.Path.Value.ToLower();
     var isAuthenticated = context.Session.GetString("IsAuthenticated");
-    Console.WriteLine($"Requested Path: {context.Request.Path}");
+    //Console.WriteLine($"Requested Path: {context.Request.Path}");
 
     if (path == "/account/login" || path == "/account/signin")
     {
         // Check if the session variable indicates successful sign-in
         
-        if (!string.IsNullOrEmpty(isAuthenticated) && bool.TryParse(isAuthenticated, out var isAuthenticatedValue) && isAuthenticatedValue)
+        if (path == "/account/signin" && !string.IsNullOrEmpty(isAuthenticated) && bool.TryParse(isAuthenticated, out var isAuthenticatedValue) && isAuthenticatedValue)
         {
             context.Response.Redirect("/Home/Index");
             return;
         }
+        else if (!string.IsNullOrEmpty(isAuthenticated) && bool.TryParse(isAuthenticated, out isAuthenticatedValue) && isAuthenticatedValue)
+        {
+            context.Response.Redirect("/Admin/Dashboard");
+            return;
+        }
+        
     }
     else if (path != "/" && path != "/account/signup")
     {

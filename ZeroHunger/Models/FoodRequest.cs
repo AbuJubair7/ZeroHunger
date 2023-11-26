@@ -11,6 +11,7 @@ namespace ZeroHunger.Models
         public string PreserveDate { get; set; }
 
         public virtual Restaurant Restaurant { get; set; }
+        public virtual FoodAssign FoodAssign { get; set; }
     }
 }
 

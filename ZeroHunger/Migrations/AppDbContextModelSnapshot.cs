@@ -30,14 +30,15 @@ namespace ZeroHunger.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("JoiningDate")
-                        .HasColumnType("timestamp with time zone");
-
                     b.Property<int>("NoOfOrderCompleted")
                         .HasColumnType("integer");
 
                     b.Property<int>("UserId")
                         .HasColumnType("integer");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -45,6 +46,36 @@ namespace ZeroHunger.Migrations
                         .IsUnique();
 
                     b.ToTable("Employees");
+                });
+
+            modelBuilder.Entity("ZeroHunger.Models.FoodAssign", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("FoodRequestId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("UserId1")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FoodRequestId")
+                        .IsUnique();
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("UserId1")
+                        .IsUnique();
+
+                    b.ToTable("FoodAssigns");
                 });
 
             modelBuilder.Entity("ZeroHunger.Models.FoodRequest", b =>
@@ -151,6 +182,29 @@ namespace ZeroHunger.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("ZeroHunger.Models.FoodAssign", b =>
+                {
+                    b.HasOne("ZeroHunger.Models.FoodRequest", "FoodRequest")
+                        .WithOne("FoodAssign")
+                        .HasForeignKey("ZeroHunger.Models.FoodAssign", "FoodRequestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ZeroHunger.Models.User", "User")
+                        .WithMany("FoodAssigns")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ZeroHunger.Models.User", null)
+                        .WithOne("FoodAssign")
+                        .HasForeignKey("ZeroHunger.Models.FoodAssign", "UserId1");
+
+                    b.Navigation("FoodRequest");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("ZeroHunger.Models.FoodRequest", b =>
                 {
                     b.HasOne("ZeroHunger.Models.Restaurant", "Restaurant")
@@ -173,6 +227,12 @@ namespace ZeroHunger.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("ZeroHunger.Models.FoodRequest", b =>
+                {
+                    b.Navigation("FoodAssign")
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("ZeroHunger.Models.Restaurant", b =>
                 {
                     b.Navigation("FoodRequests");
@@ -182,6 +242,11 @@ namespace ZeroHunger.Migrations
                 {
                     b.Navigation("Employee")
                         .IsRequired();
+
+                    b.Navigation("FoodAssign")
+                        .IsRequired();
+
+                    b.Navigation("FoodAssigns");
 
                     b.Navigation("Restaurant")
                         .IsRequired();

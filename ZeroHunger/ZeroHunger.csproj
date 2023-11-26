@@ -20,8 +20,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Views\Restaurant\" />
+    <None Remove="Views\Admin\" />
+    <None Remove="Views\Employee\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Restaurant\" />
+    <Folder Include="Views\Admin\" />
+    <Folder Include="Views\Employee\" />
   </ItemGroup>
 </Project>

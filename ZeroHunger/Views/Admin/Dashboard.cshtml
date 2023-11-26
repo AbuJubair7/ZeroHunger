@@ -1,0 +1,48 @@
+﻿@model ZeroHunger.Models.DashboardViewModel
+
+@{
+    Layout = "_AdminLayout";
+}
+
+<div class="container mt-4">
+    <h2>Food Requests</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Food Name</th>
+                <th>Food Quantity</th>
+                <th>Status</th>
+                <th>Preserve Date</th>
+                <th>User Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var foodRequest in Model.FoodRequests)
+            {
+                <tr>
+                    <td>@foodRequest.FoodName</td>
+                    <td>@foodRequest.FoodQuantity</td>
+                    <td>@foodRequest.Status</td>
+                    <td>@foodRequest.PreserveDate</td>
+                    <form method="post" asp-controller="Admin" asp-action="Assign">
+                        <td>
+                            <select class="form-select" name="employeeId">
+                                <option value="" disabled selected hidden>---</option>
+                                @foreach (var employee in Model.Employees)
+                                {
+                                    <option name="employeeId" value="@employee.Id">@employee.UserName</option>
+                                }
+                            </select>
+                        </td>
+                        <td>
+                            <input type="hidden" name="foodRequestId" value="@foodRequest.Id" />
+                            <button type="submit" class="btn btn-success">Assign</button>
+
+                        </td>
+                    </form>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

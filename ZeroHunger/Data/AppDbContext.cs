@@ -13,6 +13,7 @@ namespace ZeroHunger.Data
         public DbSet<Restaurant> Restaurants { get; set; }
         public DbSet<FoodRequest> FoodRequests { get; set; }
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<FoodAssign> FoodAssigns { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -30,6 +31,16 @@ namespace ZeroHunger.Data
                 .HasOne(e => e.User)
                 .WithOne(u => u.Employee)
                 .HasForeignKey<Employee>(e => e.UserId);
+
+            modelBuilder.Entity<FoodAssign>()
+                .HasOne(e => e.User)
+                .WithMany(r => r.FoodAssigns)
+                .HasForeignKey(r => r.UserId);
+
+            modelBuilder.Entity<FoodAssign>()
+                .HasOne(fa => fa.FoodRequest)
+                .WithOne(u => u.FoodAssign)
+                .HasForeignKey<FoodAssign>(fa => fa.FoodRequestId);
         }
     }
 }

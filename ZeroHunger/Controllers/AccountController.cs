@@ -26,10 +26,31 @@ namespace ZeroHunger.Controllers
             _dbContext = dbContext;
             _configuration = configuration;
         }
-        public IActionResult Login(string type)
+
+        [HttpGet]
+        public IActionResult Login()
         {
-            ViewData["UserType"] = type;
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login(SignInDTO signInDto)
+        {
+            if (ModelState.IsValid)
+            {
+                if (signInDto.Email == "abujubair138@gmail.com" && signInDto.Password == "1234")
+                {
+                    // Set a session variable to indicate successful sign-in
+                    HttpContext.Session.SetString("IsAuthenticated", "true");
+                    return RedirectToAction("Dashboard", "Admin");
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Invalid email or password");
+                }
+                return View(signInDto);
+            }
+            return View(signInDto);
         }
 
         [HttpGet]

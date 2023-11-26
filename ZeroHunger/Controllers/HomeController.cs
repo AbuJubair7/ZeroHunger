@@ -21,10 +21,16 @@ public class HomeController : Controller
     public IActionResult Index()
     {
         var restaurant = _dbContext.Restaurants.SingleOrDefault(u => u.UserId == int.Parse(HttpContext.Request.Cookies["UserId"]));
+        var employee = _dbContext.Employees.SingleOrDefault(u => u.UserId == int.Parse(HttpContext.Request.Cookies["UserId"]));
         if (restaurant != null)
         {
             Response.Cookies.Append("ResId", restaurant.Id.ToString());
             return RedirectToAction("Dashboard", "Restaurant");
+        }
+        else if (employee != null)
+        {
+            Response.Cookies.Append("EmpId", employee.Id.ToString());
+            return RedirectToAction("Assigned", "Employee");
         }
         ViewData["Title"] = "Welcome to the Home Page!";
         return View();
@@ -61,7 +67,21 @@ public class HomeController : Controller
 
     public IActionResult JoinAsEmployee()
     {
-        return View();
+        int userId = int.Parse(HttpContext.Request.Cookies["UserId"]);
+        var user = _dbContext.Users.SingleOrDefault(request => request.Id == userId);
+        var newEmployee = new Employee
+        {
+            UserId = int.Parse(String.IsNullOrEmpty(HttpContext.Request.Cookies["UserId"]) ? "NULL" : HttpContext.Request.Cookies["UserId"]),
+            UserName = user.Name,
+            NoOfOrderCompleted = 0
+        };
+
+        _dbContext.Employees.Add(newEmployee);
+        _dbContext.SaveChanges();
+
+        // cookies to sabe Employee ID
+        Response.Cookies.Append("EmpId", newEmployee.Id.ToString());
+        return RedirectToAction("Assigned", "Employee");
     }
 
     public IActionResult Privacy()

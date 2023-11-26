@@ -1,0 +1,25 @@
+﻿@model List<ZeroHunger.Models.Employee>
+@{
+    Layout = "_AdminLayout";
+}
+
+<div class="container mt-4">
+    <h2>Employee Information</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>UserName</th>
+                <th>NoOfOrderCompleted</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var employee in Model)
+            {
+                <tr>
+                    <td>@employee.UserName</td>
+                    <td>@employee.NoOfOrderCompleted</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
